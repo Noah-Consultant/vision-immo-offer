@@ -1,0 +1,6 @@
+{
+  "name": "Noah Labs - Proposition Vision Immo",
+  "description": "Proposition commerciale premium et simulateur de ROI interactif pour l'accompagnement Data & AI de Vision Immo par le cabinet de conseil Noah Labs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

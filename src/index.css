@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* — Encres profondes — */
+  --ink:           #06010A;
+  --coffee-deep:   #0F0208;
+  --coffee:        #1A0508;
+  --coffee-raised: #2B080D;
+  --coffee-warm:   #430E10;
+  --ember:         #641818;
+  --bordeaux:      #8B2020;   /* rouge signature */
+
+  /* — Or & cuivre — */
+  --gold-deep:     #8B6030;
+  --gold:          #B8834A;
+  --gold-bright:   #D4A050;
+  --gold-flash:    #F0C870;
+
+  /* — Ivoire & parchemin — */
+  --ivory:         #F5EDDA;
+  --ivory-muted:   #D9C8A8;
+  --parchment:     #A88458;
+  --parchment-dim: #785E42;
+
+  /* — Familles — */
+  --display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --sans:    'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* — Rythme — */
+  --r1: 0.5rem;   --r2: 1rem;    --r3: 1.75rem;
+  --r4: 3rem;     --r5: 5rem;    --r6: 8rem;
+
+  /* — Mouvement — */
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@theme {
+  --color-ink: var(--ink);
+  --color-coffee-deep: var(--coffee-deep);
+  --color-coffee: var(--coffee);
+  --color-coffee-raised: var(--coffee-raised);
+  --color-coffee-warm: var(--coffee-warm);
+  --color-ember: var(--ember);
+  --color-bordeaux: var(--bordeaux);
+  
+  --color-gold-deep: var(--gold-deep);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-flash: var(--gold-flash);
+
+  --color-ivory: var(--ivory);
+  --color-ivory-muted: var(--ivory-muted);
+  --color-parchment: var(--parchment);
+  --color-parchment-dim: var(--parchment-dim);
+
+  --font-display: var(--display);
+  --font-sans: var(--sans);
+  --font-mono: var(--mono);
+}
+
+/* Base styling */
+body {
+  background-color: var(--coffee-deep);
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-size: 18.5px; /* Augmentation globale de la police de base pour lisibilité */
+}
+
+/* Custom background texture with reduced grain opacity (granulométrie diminuée) */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-attachment: fixed;
+  background-image:
+    radial-gradient(ellipse 85% 60% at 50% 0%, rgba(139, 32, 32, 0.12), transparent 70%),
+    radial-gradient(ellipse 65% 50% at 50% 100%, rgba(100, 24, 24, 0.08), transparent 80%),
+    radial-gradient(ellipse 50% 35% at 15% 50%, rgba(184, 131, 74, 0.04), transparent 60%);
+}
+
+.ambient-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04; /* Fortement réduit pour une granulométrie ultra-fine et discrète */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0%200%20200%20200'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter%20id='noise'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Custom typography rules */
+.display-xl {
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 8vw, 6.2rem); /* proportions respectées et légèrement grandies */
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  font-variation-settings: "opsz" 144;
+}
+
+.display-l {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 5.5vw, 4.1rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-variation-settings: "opsz" 144;
+}
+
+.display-m {
+  font-family: var(--display);
+  font-size: clamp(1.65rem, 3.5vw, 2.7rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  font-variation-settings: "opsz" 72;
+}
+
+.display-s {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-variation-settings: "opsz" 36;
+}
+
+.lede {
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.82rem; /* Légèrement augmenté pour lisibilité */
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 0.85rem; /* Légèrement augmenté pour lisibilité */
+  letter-spacing: 0.04em;
+}
+
+/* Custom visual styles */
+.rule-gold {
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+}
+
+.axis-card {
+  background: linear-gradient(165deg, rgba(43, 27, 15, 0.55), rgba(19, 12, 7, 0.45));
+  border: 1px solid rgba(184, 137, 95, 0.12);
+  border-radius: 6px;
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.axis-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 160, 80, 0.3) 50%, transparent);
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.axis-card:hover {
+  transform: translateY(-6px) scale(1.015); /* Encarts dynamiques - effet de survol amplifié */
+  border-color: rgba(212, 165, 116, 0.45);
+  box-shadow: 0 16px 36px -10px rgba(15, 2, 8, 0.9), 0 0 15px rgba(212, 160, 80, 0.1);
+}
+
+.axis-card:hover::before {
+  background: linear-gradient(90deg, transparent, rgba(240, 200, 112, 0.8) 50%, transparent);
+}
+
+.offer-card {
+  background: linear-gradient(165deg, rgba(31, 20, 11, 0.65), rgba(11, 8, 5, 0.55));
+  border: 1px solid rgba(184, 137, 95, 0.12);
+  border-radius: 6px;
+  transition: all 0.4s var(--ease-out);
+}
+
+.offer-card:hover {
+  transform: translateY(-8px) scale(1.02); /* Encart dynamique au survol */
+  border-color: rgba(212, 165, 116, 0.45);
+  box-shadow: 0 25px 50px -15px rgba(15, 2, 8, 0.95), 0 0 20px rgba(212, 160, 80, 0.08);
+}
+
+.offer-card.featured {
+  border-color: rgba(212, 165, 116, 0.45);
+  box-shadow: 0 20px 60px -20px rgba(212, 165, 116, 0.15);
+  background: linear-gradient(165deg, rgba(43, 27, 15, 0.85), rgba(19, 12, 7, 0.75));
+}
+
+.offer-card.featured::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-flash), var(--gold-deep));
+  border-radius: 6px 6px 0 0;
+}
+
+.offer-card.featured:hover {
+  transform: translateY(-8px) scale(1.02); /* Encart dynamique au survol */
+  border-color: rgba(212, 165, 116, 0.65);
+  box-shadow: 0 30px 60px -15px rgba(15, 2, 8, 0.95), 0 0 25px rgba(212, 160, 80, 0.15);
+}
+
+/* Encarts et Cartes de Constat/Problèmes Dynamiques au survol */
+.p-6.rounded-lg {
+  transition: all 0.35s var(--ease-out);
+}
+.p-6.rounded-lg:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 28px -8px rgba(15, 2, 8, 0.8);
+  border-color: rgba(212, 165, 116, 0.28);
+}
+
+/* Custom Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  padding: 1rem 1.75rem;
+  transition: all 0.4s var(--ease-out);
+  box-shadow: 0 4px 20px -5px rgba(212, 160, 80, 0.25);
+  border: 1px solid var(--gold-bright);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(212, 160, 80, 0.45);
+  background: linear-gradient(135deg, var(--gold-flash), var(--gold-bright));
+  cursor: pointer;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ivory);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  padding: 1rem 1.75rem;
+  border: 1px solid rgba(217, 205, 181, 0.25);
+  transition: all 0.4s var(--ease-out);
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold-bright);
+  color: var(--gold-flash);
+  background: rgba(217, 205, 181, 0.03);
+  cursor: pointer;
+}
+
+/* Slider Custom Webkit styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: rgba(217, 205, 181, 0.15);
+  border-radius: 2px;
+  height: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--gold-bright);
+  border: 2px solid var(--coffee-deep);
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  margin-top: -6px;
+  transition: background-color 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: var(--gold-flash);
+}
+
+input[type="range"]::-moz-range-track {
+  background: rgba(217, 205, 181, 0.15);
+  border-radius: 2px;
+  height: 4px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background-color: var(--gold-bright);
+  border: 2px solid var(--coffee-deep);
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  transition: background-color 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background-color: var(--gold-flash);
+}
